@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/student_registration.css">
+    <title>Student Profile Completion</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Profile Completion</h1>
+        <div class="user-info">
+            <p>Registration Id: {{ user_data.id }}</p>
+            <p>Name: {{ user_data.name }}</p>    
+        </div>
+        <div class="tabs">
+            <button class="tablink" onclick="openTab(event, 'personal')">Personal Details</button>
+            <button class="tablink" onclick="openTab(event, 'education')">Education Details</button>
+            <button class="tablink" onclick="openTab(event, 'course')">Course Details</button>
+            <button class="tablink" onclick="openTab(event, 'communication')">Communication Details</button>
+            <a class="logout-button" href="/logout">Logout</a>
+        </div>
+
+        <!-- Personal Details Tab -->
+        <div id="personal" class="tabcontent">
+            <h2>Personal Details</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="date_of_birth">Date of Birth</label>
+                    <input type="date" id="date_of_birth" name="date_of_birth" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" formaction="/save">Save </button>
+                <!-- <button>Next</button> -->
+            </form>
+        </div>
+
+        <!-- Education Details Tab -->
+        <div id="education" class="tabcontent">
+            <h2>Education Details</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="school_name">School Name</label>
+                    <input type="text" id="school_name" name="school_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="graduation_year">Year of Graduation</label>
+                    <input type="number" id="graduation_year" name="graduation_year" required>
+                </div>
+                <button type="submit" formaction="/save">Save</button>
+                <!-- <button>Next</button> -->
+            </form>
+        </div>
+
+        <!-- Course Details Tab -->
+        <div id="course" class="tabcontent">
+            <h2>Course Details</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="course_name">Course Name</label>
+                    <input type="text" id="course_name" name="course_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="enrollment_date">Enrollment Date</label>
+                    <input type="date" id="enrollment_date" name="enrollment_date" required>
+                </div>
+                
+
+                <input type="hidden" name="active_tab" value="course">
+                <button type="submit" formaction="/save">Save</button>
+                <!-- <button>Next</button> -->
+            </form>
+        </div>
+
+        <!-- Communication Details Tab -->
+        <div id="communication" class="tabcontent">
+            <h2>Communication Details</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" id="phone_number" name="phone_number" required>
+                </div>
+                <button type="submit" formaction="/save">Save</button>
+                <button>Confirm</button>
+            </form>
+            
+
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Open the default tab on page load
+        document.getElementById("personal").style.display = "block";
+    </script>
+</body>
+</html>

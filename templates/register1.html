@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- (styles and meta tags as before) -->
+    <!-- (styles and meta tags as before) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        /* Styles for the form container */
+        .formContainer {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+        }
+
+        /* Styles for labels */
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Styles for input fields */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        /* Styles for the submit button */
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Style the submit button on hover */
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Optional: Add some spacing between form elements */
+        .formContainer > * {
+            margin-bottom: 15px;
+        }
+
+        /* Optional: Style the form container for mobile screens */
+        @media (max-width: 768px) {
+            .formContainer {
+                max-width: 100%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="formContainer">
+        <h1>Registration Form</h1>
+        <form action="/submit1" method="POST">
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" required>
+            
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname" required>
+            
+            <label for="mobile_no">Mobile No.:</label>
+            <input type="tel" id="mobile_no" name="mobile_no" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <button type="button" id="sendOTPButton" onclick="sendOTP()">Send OTP</button>
+            
+            <label for="verification_code" id="verificationLabel" style="display: none;">Verification Code:</label>
+            <input type="text" id="verification_code" name="verification_code" style="display: none;" required>
+            
+            <button type="button" id="verifyButton" onclick="verifyCode()" disabled>Verify</button>
+            <button type="button" id="resendButton" onclick="resendCode()" disabled>Resend</button>
+            
+            <label for="password" id="passwordLabel" style="display: none;">Password:</label>
+            <input type="password" id="password" name="password" style="display: none" required>
+            
+            <input type="submit" id="submitButton" value="Submit" style="display: none" disabled>
+        </form>
+    </div>
+
+    <script>
+        // Get references to the elements
+        var sendOTPButton = document.getElementById("sendOTPButton");
+        var verifyButton = document.getElementById("verifyButton");
+        var resendButton = document.getElementById("resendButton");
+        var verificationLabel = document.getElementById("verificationLabel");
+        var verificationCode = document.getElementById("verification_code");
+        var passwordLabel = document.getElementById("passwordLabel");
+        var password = document.getElementById("password");
+        var submitButton = document.querySelector('input[type="submit"]');
+        
+        function sendOTP() {
+    // Enable the "Verify" and "Resend" buttons
+    verifyButton.removeAttribute("disabled");
+    resendButton.removeAttribute("disabled");
+
+    verificationLabel.style.display = "block";
+    verificationCode.style.display = "block";
+
+    // Collect the email entered by the user
+    var email = document.getElementById("email").value;
+
+    // Send the email as a query parameter in the URL
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/send?email=" + email, true);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Handle the response from the server if needed
+            alert("Verification code sent.");
+        }
+    };
+
+    xhr.send();
+}
+
+        
+        function verifyCode() {
+    // Get the verification code entered by the user
+    var code = verificationCode.value;
+
+    // Make an AJAX request to your Flask server to verify the code
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/verify_code", true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                // The code is correct, submit the form
+                
+            submitButton.removeAttribute("disabled");
+            passwordLabel.style.display = "block";
+            password.style.display = "block";
+            submitButton.style.display = "block";
+            
+            // verificationCode.removeAttribute("disabled");
+                alert("Verification code is correct.");
+                
+            } else {
+                // The code is incorrect, show an alert
+                alert("Verification code is not correct.");
+            }
+        }
+    };
+
+    // Send the code as a JSON object
+    xhr.send(JSON.stringify({ code: code }));
+}
+        
+        function resendCode() {
+            // Make an AJAX request to resend the verification code
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/send", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Handle the response from the server if needed
+                    alert("New verification code sent.");
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

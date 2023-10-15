@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success Page</title>
+</head>
+<body>
+    <h1>Success</h1>
+    <p>Your Registration was successful.</p>
+    
+    <script>
+        // Automatically redirect after 5 seconds (5000 milliseconds)
+        setTimeout(function() {
+            window.location.href = "{{ url_for('welcome') }}";
+        }, 5000);
+    </script>
+</body>
+</html>

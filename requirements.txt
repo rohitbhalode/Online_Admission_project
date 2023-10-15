@@ -1,0 +1,7 @@
+flask
+datetime
+bcrypt
+mysql.connector
+sqlalchemy
+mysqlclient
+mysql-connector-python

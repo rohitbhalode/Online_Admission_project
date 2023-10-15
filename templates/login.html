@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>College Website</title>
+  <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Admissions</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="notifications">
+      <h2>Notifications</h2>
+      <div class="notification">Notification 1</div>
+      <div class="notification">Notification 2</div>
+      <div class="notification">Notification 3</div>
+      <!-- Add more notifications here -->
+    </div>
+
+    <div class="welcome-section">
+      <div class="container">
+        <h1>Welcome to Our College</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et est id ex dictum volutpat. Suspendisse potenti.</p>
+      </div>
+    </div>
+
+    <div class="login-form">
+      <h2>Login</h2>
+      <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="submit" value="Login">
+      </form>
+      <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+    </div>
+    <div class="facility">
+        <h2>Facility</h2>
+        <p>Facility 1</p>
+        <p>Facility 2</p>
+        <p>Facility 3</p>
+      </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 College Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>
