@@ -68,7 +68,20 @@
     </style>
 </head>
 <body>
+    <!-- <div class="container"> -->
+        
+        
+
     <div class="formContainer">
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+            
+                <li>{{ messages[0] }}</li>
+           
+        </ul>
+    {% endif %}
+{% endwith %}
         <h1>Registration Form</h1>
         <form action="/submit1" method="POST">
             <label for="fname">First Name:</label>
@@ -115,7 +128,12 @@
 
     // Collect the email entered by the user
     var email = document.getElementById("email").value;
+    // var email = document.getElementById("email").value;
 
+if (!email) {
+    alert("Please enter an email address.");
+    return; // Exit the function if the email is empty
+}
     // Send the email as a query parameter in the URL
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "/send?email=" + email, true);

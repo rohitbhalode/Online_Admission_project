@@ -165,7 +165,7 @@ def login_validation(Username, Password):
         user = session.query(User).filter(User.email == Username).first()
         personal_detail=session.query(Personal_detail).filter(Personal_detail.email == Username).first()
         education_detail=session.query(Education_detail).filter(Education_detail.email == Username).first()
-        print(user.form_status) 
+        
         session.close()
         user_data={"name" :user.F_name+" "+user.L_name,'id': user.Registration_Id,"form_status":user.form_status,"first_name":personal_detail.first_name,
                    "last_name":personal_detail.last_name,"father_name":personal_detail.father_name,"mother_name":personal_detail.mother_name,
@@ -189,6 +189,7 @@ def login_validation(Username, Password):
 
         try:
             documents = mongo.db.images.find_one({'User': Username})
+            
             user_data['image0']= documents.get('image0', ''),
             user_data['image1']= documents.get('image1', ''),
             user_data['image2']= documents.get('image2', ''),

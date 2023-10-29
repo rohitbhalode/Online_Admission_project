@@ -9,6 +9,17 @@
 <body>
     <div class="container">
         <h1>Admission Form</h1>
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+            
+                <li>{{ message[1] }}</li>
+           
+        </ul>
+    {% endif %}
+{% endwith %}
+
+
         
         <!-- Personal Details -->
         <section class="details-section">
