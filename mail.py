@@ -5,15 +5,16 @@ import pyotp
 
 def send_otp(email):
     # Generate a new secret key for the user (store this securely)
+    
     secret_key = pyotp.random_base32()
-
+    print('email.',email)
     # Create a TOTP instance (Time-based OTP)
     totp = pyotp.TOTP(secret_key)
 
     # Generate the OTP (typically done on the server)
     otp = totp.now()
-
     print(otp)
+    
     # Send the OTP to the user via email, SMS, or another method
 
 

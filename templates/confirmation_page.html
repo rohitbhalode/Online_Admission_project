@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/confirmation.css">
+    <title>Confirm Submission</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Admission Form</h1>
+        
+        <!-- Personal Details -->
+        <section class="details-section">
+            <h2>Personal Details</h2>
+            <form>
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" value="{{ user_data.first_name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" value="{{ user_data.last_name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="father_name ">Father Name</label>
+                    <input type="text" id="father_name" name="father_name" value="{% if user_data.father_name %}{{ user_data.father_name }}{% endif %}" readonly>
+                    
+                </div>
+                <div class="form-group">    
+                    <label for="mother_name ">Mother Name</label>
+                    <input type="text" id="mother_name" name="mother_name" value="{% if user_data.mother_name %}{{ user_data.mother_name }}{% endif %}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="date_of_birth">Date of Birth</label>
+                    <input type="text" id="date_of_birth" name="date_of_birth" value="{% if user_data.DOB %}{{ user_data.DOB }}{% endif %}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <input type="text" id="gender" name="gender" value="{% if user_data.gender %}{{ user_data.gender }}{% endif %}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <input type="text" id="category" name="category" value="{% if user_data.category %}{{ user_data.category }}{% endif %}" readonly>
+
+                </div>
+                <!-- Include other personal details fields here -->
+            </form>
+        </section>
+        
+        <!-- Education Details -->
+        <section class="details-section">
+            <h2>Education Details</h2>
+            <form>
+                <h3>SSC Examination</h3>
+                <div class="form-group">
+                    <label for="ssc_school_name">School Name:</label>
+                    <input type="text" id="ssc_school_name" name="ssc_school_name" value="{{ user_data.ssc_school_name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="ssc_Passing_year">Passing Year:</label>
+                    <input type="text" id="ssc_Passing_year" name="ssc_Passing_year" value="{{ user_data.ssc_Passing_year }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="ssc_rollno">Roll No:</label>
+                    <input type="text" id="ssc_rollno" name="ssc_rollno" value="{{ user_data.ssc_rollno }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="ssc_Percentage">Percentage:</label>
+                    <input type="text" id="ssc_Percentage" name="ssc_Percentage" value="{{ user_data.ssc_Percentage }}" readonly>
+                </div>
+                <!-- Include other SSC fields here -->
+
+                <h3>HSC Examination</h3>
+                <div class="form-group">
+                    <label for="hsc_school_name">School Name:</label>
+                    <input type="text" id="hsc_school_name" name="hsc_school_name" value="{{ user_data.hsc_school_name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="hsc_Passing_year">Passing Year:</label>
+                    <input type="text" id="hsc_Passing_year" name="hsc_Passing_year" value="{{ user_data.hsc_Passing_year }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="hsc_rollno">Roll No:</label>
+                    <input type="text" id="hsc_rollno" name="hsc_rollno" value="{{ user_data.hsc_rollno }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="hsc_Percentage">Percentage:</label>
+                    <input type="text" id="hsc_Percentage" name="hsc_Percentage" value="{{ user_data.hsc_Percentage }}" readonly>
+                </div>
+                <!-- Include other HSC fields here -->
+
+                <!-- Include fields for competitive examination details here -->
+                <h3>Competitive Examination</h3>
+                <div class="form-group">
+                    <label for="exam_name">Exam Name:</label>
+                    <input type="text" id="exam_name" name="exam_name" value="{{ user_data.exam_name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exam_rollno">Roll No:</label>
+                    <input type="text" id="exam_rollno" name="exam_rollno" value="{{ user_data.exam_rollno }}" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exam_Percentage">Percentage:</label>
+                    <input type="text" id="exam_Percentage" name="exam_Percentage" value="{{ user_data.exam_Percentage }}" readonly>
+                </div>
+                <h3>Course Details</h3>
+                
+                    <div class="form-group">
+                        <label for="course">Course to be enrolled:</label>
+                        <input type="text" id="course" name="course" value="{{ user_data.course }}" readonly>
+                    </div>
+                
+            </form>
+        </section>
+
+        <!-- Document Uploads -->
+        <section class="details-section">
+            <h2>Document Uploads</h2>
+            <form>
+                <div class="form-group">
+                    <label for="Photograph">Photograph:</label>
+                    <!-- Display a link to download the uploaded photograph if available -->
+                    {% if user_data.image0 %}
+                        <a href="/get_image/image0">Download</a>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="Signature">Signature:</label>
+                    <!-- Display a link to download the uploaded photograph if available -->
+                    {% if user_data.image1 %}
+                        <a href="/get_image/image1">Download</a>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="10th_marksheet">10th Result:</label>
+                    <!-- Display a link to download the uploaded photograph if available -->
+                    {% if user_data.image2 %}
+                        <a href="/get_image/image2">Download</a>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="12th_marksheet">12th Result:</label>
+                    <!-- Display a link to download the uploaded photograph if available -->
+                    {% if user_data.image3 %}
+                        <a href="/get_image/image3">Download</a>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="Caste_certificate">Caste Certificate:</label>
+                    <!-- Display a link to download the uploaded photograph if available -->
+                    {% if user_data.image4 %}
+                        <a href="/get_image/image4">Download</a>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="Entrance_exam">Entrance Exam Result:</label>
+                    <!-- Display a link to download the uploaded photograph if available -->
+                    {% if user_data.image5 %}
+                        <a href="/get_image/image5">Download</a>
+                    {% endif %}
+                </div>
+                <!-- Include fields for other document uploads here -->
+            </form>
+        </section>
+
+        <!-- Communication Details -->
+        <section class="details-section">
+            <h2>Communication Details</h2>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ user_data.email }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" id="phone_number" name="phone_number"  value="{% if user_data.mobile_no %}{{ user_data.mobile_no }}{% endif %}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" value="{% if user_data.address %}{{ user_data.address }}{% endif %}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="district">District</label>
+                    <input type="text" id="district" name="district" value="{% if user_data.district %}{{ user_data.district }}{% endif %}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="State">State</label>
+                    <input type="text" id="state" name="state" value="{% if user_data.state %}{{ user_data.state }}{% endif %}" readonly>
+
+                </div>
+                <!-- Include other communication details fields here -->
+            </form>
+        </section>
+        
+        
+        
+       <!-- Add this section to your HTML code for buttons -->
+       <section class="button-section">
+        {% if user_data.form_status == "Submitted" %}
+            <a class="back-button" href="javascript:history.back()">Go Back</a>
+        {% else %}
+            <button class="edit-button" onclick="editInformation()">Edit Information</button>
+            <button class="submit-button" onclick="submitForm()">Submit</button>
+        {% endif %}
+    </section>
+    
+<script>
+    
+    function editInformation() {
+    // Redirect to the edit page
+    window.location.href = "/login"; // Change the URL to your editing page
+}
+
+function submitForm() {
+    // Handle the form submission here (if needed)
+    // You can perform any necessary form submission logic
+    // Then, redirect the user to a success page or perform other actions
+    window.location.href = "/submitted"; // Change the URL to your success page
+}
+// Get the button elements
+
+</script>
+    </div>
+</body>
+</html>

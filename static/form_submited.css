@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* Light gray background color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff; /* White background for the container */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    max-width: 400px;
+}
+
+h1 {
+    color: #333; /* Dark gray text color for the heading */
+}
+
+.confirmation {
+    margin: 20px 0;
+}
+
+.confirmation p {
+    color: #444; /* Slightly darker gray text color */
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.actions a {
+    display: block;
+    background-color: #0077A6; /* Blue background color for buttons */
+    color: #fff; /* White text color */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.actions a:hover {
+    background-color: #005C8A; /* Darker blue color on hover */
+}

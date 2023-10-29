@@ -5,3 +5,6 @@ mysql.connector
 sqlalchemy
 mysqlclient
 mysql-connector-python
+pymongo
+bson
+python-dotenv
