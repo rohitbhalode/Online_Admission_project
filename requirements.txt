@@ -7,4 +7,8 @@ mysqlclient
 mysql-connector-python
 pymongo
 bson
+pyotp
+email
 python-dotenv
+smtplib
+gunicorn
