@@ -7,6 +7,6 @@ sqlalchemy==1.4.25
 mysqlclient==2.1.0
 pymongo==3.12.0
 pyotp==2.6.0
-
+pymongo[srv]==3.12.0
 python-dotenv
 gunicorn==20.1.0
